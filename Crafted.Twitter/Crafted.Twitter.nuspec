@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Crafted.Twitter</id>
+        <version>$version$</version>
+        <title>Crafted.Twitter</title>
+        <authors>James Rowlinson</authors>
+        <owners>James Rowlinson</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A cached OAuth twitter library for displaying a tweet timeline</description>
+        <summary>A cached OAuth twitter library for displaying a tweet timeline</summary>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System" targetFramework="" />
+            <frameworkAssembly assemblyName="System.configuration" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Core" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Data" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Web" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Web.Mvc" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Web.Routing" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Web.Extensions" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
+        </frameworkAssemblies>
+        <dependencies>
+          <dependency id="linqtotwitter " version="2.1.04" />
+        </dependencies>
+    </metadata>
+
+  <files>
+    <file src="readme.txt" target="" />
+    <file src="Web.config.transform" target="content\Web.config.transform" />
+  </files>
+</package>

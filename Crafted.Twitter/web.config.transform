@@ -1,0 +1,33 @@
+﻿<?xml version="1.0"?>
+
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+
+
+<configuration>
+  <system.web>
+    <compilation>
+      <assemblies>
+        <add assembly="System.Web.Routing, Version=3.5.0.0,    Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+      </assemblies>
+    </compilation>
+    <pages>
+      <controls>
+        <add assembly="Crafted.Twitter" namespace="Crafted.Twitter.Controls" tagPrefix="Crafted.Twitter"/>
+      </controls>
+    </pages>
+    <httpModules>
+      <add name="UrlRoutingModule" type="System.Web.Routing.UrlRoutingModule, System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+    </httpModules>
+  </system.web>
+  <system.webServer>
+    <modules>
+      <add name="UrlRoutingModule" type="System.Web.Routing.UrlRoutingModule, System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+    </modules>
+    <handlers>
+      <add name="UrlRoutingHandler" preCondition="integratedMode" verb="*" path="UrlRouting.axd" type="System.Web.HttpForbiddenHandler, System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </handlers>
+  </system.webServer>
+</configuration>
