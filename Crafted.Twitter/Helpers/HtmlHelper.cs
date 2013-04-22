@@ -55,7 +55,7 @@ namespace Crafted.Twitter.Helpers
             
             JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-            asyncBaseHtml = string.Format(asyncBaseHtml, VirtualPathUtility.ToAbsolute(ConfigHelper.GetAppSettingString(ConfigKey.HandlerPath)), serializer.Serialize(inputParams), CssClass);
+            asyncBaseHtml = string.Format(asyncBaseHtml, VirtualPathUtility.ToAbsolute(ConfigHelper.GetAppSettingString(ConfigKey.HandlerPath, Constants.Configuration.HandlerPath)), serializer.Serialize(inputParams), CssClass);
 
             return asyncBaseHtml;
         }
@@ -94,6 +94,8 @@ namespace Crafted.Twitter.Helpers
                 {
                     foreach (Status tweet in tweets)
                     {
+                        DateTime tweetCreated = tweet.CreatedAt.ToLocalTime();
+
                         //string tweetOutput = htmlBase;
                         //Match match = placeHolderExp.Match(tweetOutput);
                         //while (match != null)
@@ -104,15 +106,16 @@ namespace Crafted.Twitter.Helpers
 
                         tweetBuilder.AppendLine("<li>");
                         tweetBuilder.AppendLine("<div class='user-container'>");
-                        tweetBuilder.AppendLine(string.Format("<a class='user-link' href='{0}{1}' target='_blank'>", Constants.TwitterUrl, tweet.User.Identifier.ScreenName));
+                        tweetBuilder.AppendLine(string.Format("<a class='user-link' href='{0}{1}' target='_blank'>", Constants.Configuration.TwitterUrl, tweet.User.Identifier.ScreenName));
                         tweetBuilder.AppendLine(string.Format("<img class='user-image' src='{0}' />", tweet.User.ProfileImageUrl));
                         tweetBuilder.AppendLine("</a>");
                         tweetBuilder.AppendLine("</div>");
                         tweetBuilder.AppendLine("<div class='tweet-container'>");
-                        tweetBuilder.AppendLine(string.Format("<a class='tweet-screenName' href='{0}{1}' target='_blank'>{1}</a>", Constants.TwitterUrl, tweet.User.Identifier.ScreenName));
+                        tweetBuilder.AppendLine(string.Format("<a class='tweet-screenName' href='{0}{1}' target='_blank'>{1}</a>", Constants.Configuration.TwitterUrl, tweet.User.Identifier.ScreenName));
                         tweetBuilder.AppendLine(string.Format("<p class='tweet-content'>{0}</p>", ParseTweetText(tweet.Text)));
-                        tweetBuilder.AppendLine(string.Format("<span class='tweet-date'>{0}</span>", tweet.CreatedAt.ToString("dd/MM/yy hh:mm:ss")));
-                        tweetBuilder.AppendLine(string.Format("<span class='tweet-time-passed'>{0}</span>", GetTimePassed(tweet.CreatedAt)));
+                        tweetBuilder.AppendLine(string.Format("<span class='tweet-date'>{0}</span>", tweetCreated.ToString("dd MMM yyyy")));
+                        tweetBuilder.AppendLine(string.Format("<span class='tweet-time'>{0}</span>", tweetCreated.ToString("hh:mm:ss")));
+                        tweetBuilder.AppendLine(string.Format("<span class='tweet-time-passed'>{0}</span>", GetTimePassed(tweetCreated)));
                         tweetBuilder.AppendLine("</div>");
                         tweetBuilder.AppendLine("</li>");
                     }
@@ -146,17 +149,17 @@ namespace Crafted.Twitter.Helpers
             //add links to twitter names
             if (parsedTweet.Contains("@"))
             {
-                parsedTweet = Regex.Replace(parsedTweet, Constants.TweetUserExpression, new MatchEvaluator(s => string.Format("<a href='{0}{1}' target='_blank'>{2}</a>", Constants.TwitterUrl, s.Value.Substring(1), s.Value)));
+                parsedTweet = Regex.Replace(parsedTweet, Constants.RegularExpressions.TweetUserExpression, new MatchEvaluator(s => string.Format("<a href='{0}{1}' target='_blank'>{2}</a>", Constants.Configuration.TwitterUrl, s.Value.Substring(1), s.Value)));
             }
             //add links to hash tags
             if (parsedTweet.Contains("#"))
             {
-                parsedTweet = Regex.Replace(parsedTweet, Constants.TweetHashTagExpression, new MatchEvaluator(s => string.Format("<a href='{0}search?q=%23{1}&src=hash' target='_blank'>{2}</a>", Constants.TwitterUrl, s.Value.Substring(1), s.Value)));
+                parsedTweet = Regex.Replace(parsedTweet, Constants.RegularExpressions.TweetHashTagExpression, new MatchEvaluator(s => string.Format("<a href='{0}search?q=%23{1}&src=hash' target='_blank'>{2}</a>", Constants.Configuration.TwitterUrl, s.Value.Substring(1), s.Value)));
             }
             //make links in tweet text into html links
             if (parsedTweet.Contains("http://"))
             {
-                parsedTweet = Regex.Replace(parsedTweet, Constants.TweetLinkExpression, new MatchEvaluator(s => string.Format("<a href='{0}' target='_blank'>{0}</a>", s.Value)));
+                parsedTweet = Regex.Replace(parsedTweet, Constants.RegularExpressions.TweetLinkExpression, new MatchEvaluator(s => string.Format("<a href='{0}' target='_blank'>{0}</a>", s.Value)));
             }
 
             return parsedTweet;
@@ -176,11 +179,11 @@ namespace Crafted.Twitter.Helpers
             if (timePassed < new TimeSpan(0, 0, 1, 0))
                 timeString = "Less than a minute passed";
             else if (timePassed < new TimeSpan(0, 1, 0, 0))
-                timeString = string.Format("{0} minutes passed", timePassed.Minutes);
+                timeString = string.Format("{0} minute{1} ago", timePassed.Minutes, timePassed.Minutes == 1 ? "" : "s");
             else if (timePassed < new TimeSpan(1, 0, 0, 0))
-                timeString = string.Format("{0} hours passed", timePassed.Hours);
+                timeString = string.Format("{0} hour{1} ago", timePassed.Hours, timePassed.Hours == 1 ? "" : "s");
             else
-                timeString = string.Format("{0} days passed", timePassed.Days);
+                timeString = string.Format("{0} day{1} ago", timePassed.Days, timePassed.Days == 1 ? "" : "s");
 
             return timeString;
         }

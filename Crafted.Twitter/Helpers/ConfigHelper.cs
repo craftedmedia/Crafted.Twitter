@@ -16,9 +16,9 @@ namespace Crafted.Twitter.Helpers
             return ConfigurationManager.AppSettings[key.ToString()];
         }
 
-        public static string GetAppSettingString(ConfigKey key)
+        public static string GetAppSettingString(ConfigKey key, string defaultValue = null)
         {
-            return GetAppSetting(key).ToString();
+            return GetAppSetting(key, defaultValue).ToString();
         }
 
         public static bool GetAppSettingBool(ConfigKey key, bool defaultValue)

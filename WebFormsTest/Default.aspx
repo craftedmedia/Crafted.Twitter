@@ -15,5 +15,5 @@
             title="MSDN ASP.NET Docs">documentation on ASP.NET at MSDN</a>.
     </p>
 
-    <Crafted.Twitter:Timeline id="timeline" runat="server" IsAsync="true"></Crafted.Twitter:Timeline>
+    <Crafted.Twitter:Timeline id="timeline" runat="server" CssClass="tweets" IsAsync="false" ScreenName="workspacegroup" ListName="workspacegroupwebsites" ShowRetweets="true" TweetCount="3"></Crafted.Twitter:Timeline>
 </asp:Content>

@@ -37,9 +37,9 @@
     <OutputPath>bin\Nuget\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LinqToTwitter, Version=2.1.4.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
+    <Reference Include="LinqToTwitter, Version=2.1.5.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\linqtotwitter.2.1.04\lib\net35\LinqToTwitter.dll</HintPath>
+      <HintPath>..\packages\linqtotwitter.2.1.05\lib\net35\LinqToTwitter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

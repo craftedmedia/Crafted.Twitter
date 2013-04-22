@@ -92,10 +92,10 @@ namespace Crafted.Twitter.Handlers
                 else
                     return serializer.Serialize(TimelineHelper.GetList(inputParams));
             }
-            catch
+            catch(Exception ex)
             {
                 context.Response.StatusCode = 500;
-                return "Error retrieving timeline.";
+                return string.Format("Error retrieving timeline: '{0}'", ex.Message);
             }
 
         }

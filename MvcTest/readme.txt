@@ -26,28 +26,19 @@ None of these parameters are required, if the screenname is not specified it wil
 
 MVC include:
 
-@Html.Raw(Crafted.Twitter.Helpers.HtmlHelper.RenderTimelineIncludes(5, true, false, null, "tweet-container", true))
+@Html.RenderTwitterFeed(3, false, false, true, "", "", "")
 
-There are two overloads, for the first the parameters are as follows;
+The parameters are as follows;
+
 int tweetCount
 bool showReplies
 bool includeRetweets
-string screenName = null
-string CssClass = "tweet-container"
 bool isAsync = false
-
-If the screenname property is left as null then it will fetch tweets associated with the authentication details.
-
-
-For the second the parameters are as follows;
-
-int tweetCount
-bool includeRetweets
-string screenName
-string listName
+string screenName = null
+string listName = null
 string CssClass = "tweet-container"
-bool isAsync = false 
-If the screenname property is left as null then it will fetch tweets associated with the authentication details.
+
+If the screenname property is left as null then it will fetch tweets associated with the authentication details, if a list name is supplied then the tweets will be selected from the list and the showReplies flag will be ignored.
 
 
 The markup that the twitter feed outputs as is wrapped in a <ul> and is as follows;

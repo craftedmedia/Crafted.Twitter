@@ -21,7 +21,7 @@
             <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
         </frameworkAssemblies>
         <dependencies>
-          <dependency id="linqtotwitter " version="2.1.04" />
+          <dependency id="linqtotwitter " version="2.1.05" />
         </dependencies>
     </metadata>
 

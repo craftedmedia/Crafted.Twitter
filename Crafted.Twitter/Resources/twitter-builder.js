@@ -60,9 +60,20 @@ function FormatData(data, formatType) {
 
     switch (formatType) {
         case ':Date':
+
+            var shortMonthNames = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+            var monthNames = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+
             var dateTimestamp = data.replace(/\D/g, '') * 1;
             var castDate = new Date(dateTimestamp);
-            var dateString = castDate.getFullYear() + '/' + castDate.getMonth() + '/' + castDate.getDate() + ' ' + castDate.getHours() + ':' + castDate.getMinutes() + ':' + castDate.getSeconds();
+            var dateString = castDate.getDate() + ' ' + shortMonthNames[castDate.getMonth()] + ' ' + castDate.getFullYear();
+            return dateString;
+            break;
+        case ':Time':
+
+            var dateTimestamp = data.replace(/\D/g, '') * 1;
+            var castDate = new Date(dateTimestamp);
+            var dateString = castDate.getHours() + ':' + castDate.getMinutes() + ':' + castDate.getSeconds();
             return dateString;
             break;
         case ':TimePassed':
@@ -89,23 +100,23 @@ function timeSince(date) {
     var interval = Math.floor(seconds / 31536000);
 
     if (interval >= 1) {
-        return interval + " years ago";
+        return interval + " year" + (interval == 1 ? "" : "s") + " ago";
     }
     interval = Math.floor(seconds / 2592000);
     if (interval >= 1) {
-        return interval + " months ago";
+        return interval + " month" + (interval == 1 ? "" : "s") + " ago";
     }
     interval = Math.floor(seconds / 86400);
     if (interval >= 1) {
-        return interval + " days ago";
+        return interval + " day" + (interval == 1 ? "" : "s") + " ago";
     }
     interval = Math.floor(seconds / 3600);
     if (interval >= 1) {
-        return interval + " hours ago";
+        return interval + " hour" + (interval == 1 ? "" : "s") + " ago";
     }
     interval = Math.floor(seconds / 60);
     if (interval >= 1) {
-        return interval + " minutes ago";
+        return interval + " minute" + (interval == 1 ? "" : "s") + " ago";
     }
     return "Less than a minute ago";
 }

@@ -46,12 +46,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Crafted.Twitter, Version=1.0.0.17665, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Crafted.Twitter, Version=1.0.3.22169, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Crafted.Twitter.1.0.0.17665\lib\net35\Crafted.Twitter.dll</HintPath>
+      <HintPath>..\packages\Crafted.Twitter.1.0.3.22169\lib\net35\Crafted.Twitter.dll</HintPath>
     </Reference>
-    <Reference Include="LinqToTwitter, Version=2.1.4.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
-      <HintPath>..\packages\linqtotwitter.2.1.04\lib\net40\LinqToTwitter.dll</HintPath>
+    <Reference Include="LinqToTwitter, Version=2.1.5.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\linqtotwitter.2.1.05\lib\net40\LinqToTwitter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />

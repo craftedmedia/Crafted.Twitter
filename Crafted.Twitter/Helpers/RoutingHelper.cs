@@ -13,7 +13,7 @@ namespace Crafted.Twitter.Helpers
         {
             var routes = RouteTable.Routes;
             var handler = new Twitter.Handlers.TwitterServiceHandler();
-            var prefix = ConfigHelper.GetAppSettingString(ConfigKey.HandlerPath);
+            var prefix = ConfigHelper.GetAppSettingString(ConfigKey.HandlerPath, Constants.Configuration.HandlerPath);
             if (prefix.Contains("~/")) prefix = prefix.Replace("~/", "");
 
             if ((from Route r in routes where r.Url == prefix + "{filename}" select r).Count<Route>() == 0)
